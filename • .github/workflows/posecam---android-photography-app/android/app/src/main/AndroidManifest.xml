@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Camera Permission required for capturing real user photos -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <!-- Internet & Network State for AdMob -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Note on Storage: Android 10+ (API 29+) uses MediaStore Scoped Storage.
+         WRITE_EXTERNAL_STORAGE is not needed on modern Android for saving to Pictures/ -->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PoseCam">
+
+        <!-- ========================================================================= -->
+        <!-- ADMOB CONFIGURATION:                                                      -->
+        <!-- Official Google Sample Test App ID below.                                  -->
+        <!-- IMPORTANT: Replace with your real AdMob App ID before publishing to Play. -->
+        <!-- ========================================================================= -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <!-- Home Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Camera Activity with Pose Overlay -->
+        <activity
+            android:name=".camera.CameraActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.PoseCam.Camera" />
+
+        <!-- Pose Gallery Activity -->
+        <activity
+            android:name=".gallery.PoseGalleryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- Photo Result & Background Enhancer Activity -->
+        <activity
+            android:name=".editor.PhotoResultActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+    </application>
+
+</manifest>
