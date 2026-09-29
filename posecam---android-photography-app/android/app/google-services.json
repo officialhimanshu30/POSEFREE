@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "127583064191",
+    "project_id": "orelicaofficial-5ebbe",
+    "storage_bucket": "orelicaofficial-5ebbe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127583064191:android:9d05dcf575ed894334ef4a",
+        "android_client_info": {
+          "package_name": "com.posefree.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9qQK4_Opbt1Ps6Q9F0nms2IWVDcq80ZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

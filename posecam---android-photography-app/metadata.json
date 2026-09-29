@@ -1,0 +1,6 @@
+{
+  "name": "PoseCam - Android Photography App",
+  "description": "Photography app with transparent pose guide overlay, camera timer, background enhancement, AdMob integration, and local storage.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
