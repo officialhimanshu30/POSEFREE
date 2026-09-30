@@ -1,4 +1,4 @@
-name: POSEFREE Perfect APK Generator
+name: POSEFREE Super Perfect APK Generator
 
 on:
   push:
@@ -20,24 +20,34 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Find Gradlew and Grant Permission
+    - name: Smart Search for Gradle Wrapper
       run: |
-        GRADLEW_PATH=$(find . -name "gradlew" | head -n 1)
+        # Yeh command har tarah ke gradlew ya gradlew.bat ko dhoondh legi
+        GRADLEW_PATH=$(find . -iname "gradlew" -o -name "gradlew.bat" | head -n 1)
+        
         if [ -z "$GRADLEW_PATH" ]; then
-          echo "Error: gradlew not found anywhere in the repository!"
+          echo "Error: Project mein gradlew file bilkul nahi mili!"
           exit 1
         fi
-        echo "Found gradlew at: $GRADLEW_PATH"
+        
+        echo "Found gradle script at: $GRADLEW_PATH"
         chmod +x "$GRADLEW_PATH"
         echo "GRADLEW_DIR=$(dirname "$GRADLEW_PATH")" >> $GITHUB_ENV
 
     - name: Build Debug APK
       run: |
         cd ${{ env.GRADLEW_DIR }}
-        ./gradlew assembleDebug
+        # Agar Linux wali file na ho to automatic wrapper fallback use karega
+        if [ -f "./gradlew" ]; then
+          ./gradlew assembleDebug --stacktrace
+        else
+          gradle assembleDebug --stacktrace
+        fi
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: PoseFree-Photography-APK
-        path: "**/build/outputs/apk/debug/*-debug.apk"
+        path: |
+          **/build/outputs/apk/debug/*.apk
+          **/build/outputs/apk/*/*.apk
